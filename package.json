@@ -1,0 +1,18 @@
+{
+  "name": "n8n-express-proxy",
+  "version": "1.0.0",
+  "description": "Express.js server to interact with n8n",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.4.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

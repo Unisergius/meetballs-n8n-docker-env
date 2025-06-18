@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  node:
+    image: node:alpine
+    container_name: node-container
+    working_dir: /app
+    volumes:
+      - ./src:/app
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install && npm start"
+    networks:
+      - app-network
+
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n-container
+    volumes:
+      - n8n-data:/home/node/.n8n
+    networks:
+      - app-network
+    ports:
+      - "5679:5678"
+
+volumes:
+  n8n-data:
+
+networks:
+  app-network:
+    driver: bridge
