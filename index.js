@@ -66,19 +66,25 @@ app.get('/health', (req, res) => {
 });
 
 // Proxy endpoint to trigger n8n workflows
-app.post('/workflow/:id/trigger', async (req, res) => {
+// Example: To trigger http://n8n:5678/webhook-test/553111d7-1844-40e3-88e0-08a89037aced
+// you would send a GET request to http://localhost:3000/workflow/553111d7-1844-40e3-88e0-08a89037aced/trigger
+app.get('/workflow/:id/trigger', async (req, res) => {
   try {
-    const workflowId = req.params.id;
+    const workflowId = req.params.id; 
     const response = await axios.post(
-      `${N8N_URL}/webhook/${workflowId}`,
+      `${N8N_URL}/webhook-test/${workflowId}`,
       req.body,
       {
         headers: {
-          'Content-Type': 'application/json',
+          //'Content-Type': 'application/json',
         },
       }
     );
-    res.json(response.data);
+    // output the response from n8n in html
+    res.setHeader('Content-Type', 'text/html');
+    res.status(response.status);
+    // Assuming the response from n8n is JSON, convert it to HTML
+    res.send(response.data);
   } catch (error) {
     console.error('Error triggering workflow:', error.message);
     res.status(500).json({
