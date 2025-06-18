@@ -24,10 +24,10 @@ The environment consists of two main services:
    cd meetballs-n8n-docker-env
    ```
 
-2. Create a .env file in the src directory:
+2. Create a .env file:
 
    ```bash
-   cp src/.env.example src/.env
+   cp .env.example .env
    ```
 
 3. Start the containers:
@@ -73,10 +73,9 @@ Retrieves the status and information about a specific workflow.
 ```text
 .
 ├── docker-compose.yml    # Docker compose configuration
-├── src/                 # Express.js application source
-│   ├── index.js        # Main application file
-│   ├── package.json    # Node.js dependencies
-│   └── .env           # Environment variables
+├── index.js            # Main application file
+├── package.json       # Node.js dependencies
+└── .env              # Environment variables
 └── README.md           # This file
 ```
 
